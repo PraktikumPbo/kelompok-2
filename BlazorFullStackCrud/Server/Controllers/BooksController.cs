@@ -15,21 +15,21 @@ namespace BlazorFullStackCrud.Server.Controllers
         }
 
         [HttpGet]
-        public async Task<ActionResult<List<Buku>>> GetSuperHeroes()
+        public async Task<ActionResult<List<Buku>>> GetBooks()
         {
             var heroes = await _context.Buku.ToListAsync();
             return Ok(heroes);
         }
 
         [HttpGet("genres")]
-        public async Task<ActionResult<List<Genre>>> GetComics()
+        public async Task<ActionResult<List<Genre>>> GetGenres()
         {
             var genres = await _context.Genres.ToListAsync();
             return Ok(genres);
         }
 
         [HttpGet("{id}")]
-        public async Task<ActionResult<Buku>> GetSingleHero(int id)
+        public async Task<ActionResult<Buku>> GetSinglebooks(int id)
         {
             var hero = await _context.Buku
                 .Include(h => h.Genre)
@@ -42,17 +42,17 @@ namespace BlazorFullStackCrud.Server.Controllers
         }
 
         [HttpPost]
-        public async Task<ActionResult<List<Shared.Buku>>> CreateSuperHero(Shared.Buku hero)
+        public async Task<ActionResult<List<Shared.Buku>>> CreateBooks(Shared.Buku hero)
         {
             hero.Genre = null;
             _context.Buku.Add(hero);
             await _context.SaveChangesAsync();
 
-            return Ok(await GetDbHeroes());
+            return Ok(await GetDbBooks());
         }
 
         [HttpPut("{id}")]
-        public async Task<ActionResult<List<Shared.Buku>>> UpdateSuperHero(Shared.Buku hero, int id)
+        public async Task<ActionResult<List<Shared.Buku>>> UpdateBooks(Shared.Buku hero, int id)
         {
             var dbHero = await _context.Buku
                 .Include(sh => sh.Genre  )
@@ -67,11 +67,11 @@ namespace BlazorFullStackCrud.Server.Controllers
 
             await _context.SaveChangesAsync();
 
-            return Ok(await GetDbHeroes());
+            return Ok(await GetDbBooks());
         }
 
         [HttpDelete("{id}")]
-        public async Task<ActionResult<List<Shared.Buku>>> DeleteSuperHero(int id)
+        public async Task<ActionResult<List<Shared.Buku>>> DeleteBooks(int id)
         {
             var dbHero = await _context.Buku
                 .Include(sh => sh.Genre)
@@ -82,10 +82,10 @@ namespace BlazorFullStackCrud.Server.Controllers
             _context.Buku.Remove(dbHero);
             await _context.SaveChangesAsync();
 
-            return Ok(await GetDbHeroes());
+            return Ok(await GetDbBooks());
         }
 
-        private async Task<List<Shared.Buku>> GetDbHeroes()
+        private async Task<List<Shared.Buku>> GetDbBooks()
         {
             return await _context.Buku.Include(sh => sh.Genre).ToListAsync();
         }

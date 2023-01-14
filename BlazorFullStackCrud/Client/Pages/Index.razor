@@ -1,9 +1,37 @@
 ﻿@page "/"
+@inject IBooksService BooksServices
+@inject NavigationManager NavigationManager
+<PageTitle>Home</PageTitle>
 
-<PageTitle>Index</PageTitle>
+<h3>Buku Tersedia</h3>
 
-<h1>Hello, world!</h1>
-
-Welcome to your new app.
+<table class="table">
+    <thead>
+        <tr>
+            <th>Judul Buku</th>
+            <th>Penerbit</th>
+            <th>Penulis</th>
+            <th>Genre</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var hero in BooksServices.Bukus)
+        {
+            <tr>
+                <td>@hero.Judul_Buku</td>
+                <td>@hero.Penerbit</td>
+                <td>@hero.Penulis</td>
+                <td>@hero.GenreId</td>
+            </tr>
+        }
+    </tbody>
+</table>
+@code {
+    protected override async Task OnInitializedAsync()
+    {
+        await BooksServices.GetSuperHeroes();
+    }
+}
 
 <SurveyPrompt Title="How is Blazor working for you?" />

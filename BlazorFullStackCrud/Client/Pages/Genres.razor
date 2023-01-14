@@ -1,0 +1,33 @@
+﻿@page "/genres"
+@inject IBooksService BooksServices
+@inject NavigationManager NavigationManager
+
+<PageTitle>Data Genre</PageTitle>
+
+<h3>Genre Tersedia</h3>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>Nama Genre</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var hero in BooksServices.Genres)
+        {
+            <tr>
+                <td>@hero.Id</td>
+                <td>@hero.Name</td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+@code {
+    protected override async Task OnInitializedAsync()
+    {
+        await BooksServices.GetComics();
+    }
+}

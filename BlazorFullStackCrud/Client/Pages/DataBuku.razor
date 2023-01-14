@@ -1,10 +1,10 @@
 ﻿@page "/books"
-@inject IBooksService SuperHeroService
+@inject IBooksService BooksServices
 @inject NavigationManager NavigationManager
 
 <PageTitle>Data Buku</PageTitle>
 
-<h3>Super Heroes</h3>
+<h3>Buku Tersedia</h3>
 
 <table class="table">
     <thead>
@@ -17,7 +17,7 @@
         </tr>
     </thead>
     <tbody>
-        @foreach (var hero in SuperHeroService.Bukus)
+        @foreach (var hero in BooksServices.Bukus)
         {
             <tr>
                 <td>@hero.Judul_Buku</td>
@@ -36,7 +36,7 @@
 @code {
     protected override async Task OnInitializedAsync()
     {
-        await SuperHeroService.GetSuperHeroes();
+        await BooksServices.GetSuperHeroes();
     }
 
     void ShowHero(int id)
