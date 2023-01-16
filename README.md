@@ -1,5 +1,9 @@
 # DigiLibbCuy
-
+Rofi Nafiis Zain (1214017)
+Haris Riyoni (1214047)
+Jasmine Mutiara (1214012)
+M Faisal A (1214041)
+Aplikasi Administrator Perpustakaan
 ## _System Requirement:_ 
 - .NET 6.
 - Microsoft Entity Framework SQLEXPRESS
